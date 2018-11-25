@@ -1,0 +1,24 @@
+{
+  "name": "ropieee-evaluation",
+  "version": "0.0.1",
+  "description": "Testing extension",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "spockfish",
+  "license": "MIT",
+  "homepage": "https://ropieee.org",
+  "dependencies": {
+    "hashmap": "^2.3.0",
+    "lodash": "^4.17.11",
+    "mqtt": "^2.18.8",
+    "node-roon-api": "github:roonlabs/node-roon-api",
+    "node-roon-api-status": "github:roonlabs/node-roon-api-status",
+    "node-roon-api-transport": "github:roonlabs/node-roon-api-transport",
+    "os": "^0.1.1",
+    "sd-notify": "^2.3.1",
+    "underscore": "^1.9.1",
+    "winston": "^3.1.0"
+  }
+}

@@ -1,0 +1,20 @@
+[Unit]
+Description=RoPieee Evaluation Extension
+Wants=network-online.target
+After=ropieee.service roonbridge.service ntpd.service
+Before=ropieee-touchui.service
+
+[Service]
+WorkingDirectory=/opt/RoPieee/evaluate
+Type=notify
+ExecStart=/usr/bin/node /opt/RoPieee/evaluate/app.js
+Restart=always
+TimeoutStartSec=30
+RestartSec=2
+WatchdogSec=3
+SyslogIdentifier=ropieee-evaluate
+Environment="NODE_DEBUG=debug"
+
+[Install]
+WantedBy=multi-user.target
+

@@ -1,0 +1,33 @@
+post_install()
+{
+   systemctl daemon-reload
+}
+
+pre_remove()
+{
+   echo "pre_remove()"
+}
+
+pre_upgrade()
+{
+   echo "pre_upgrade()"
+}
+
+post_upgrade()
+{
+   echo "post_upgrade()"
+
+   systemctl daemon-reload
+   if systemctl is-enabled ropieee-evaluate
+   then
+      systemctl restart ropieee-evaluate
+   fi
+
+   # do we have previous pairing information?
+   if [ -f /tmp/ropieee-evaluate-config.json ]
+   then
+      echo " restoring Core pairing information"
+      cp /tmp/ropieee-evaluate-config.json /opt/RoPieee/evaluate/config.json
+   fi
+}
+

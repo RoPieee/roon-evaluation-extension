@@ -6,8 +6,7 @@ var logger = require('./log.js');
 
 var os     = require('os');
 var _      = require('lodash');
-//var mqtt   = require('./mqtt.js');
-//var notify = require('sd-notify');
+var notify = require('sd-notify');
 
 // Roon objects
 var core;
@@ -65,8 +64,8 @@ roon.init_services({
 svc_status.set_status("Running", false);
 
 // systemd stuff
-//notify.ready();
-//notify.startWatchdogMode(2800);
+notify.ready();
+notify.startWatchdogMode(2800);
 
 // Roon API watchdog
 setInterval(ping_roon, 60000);

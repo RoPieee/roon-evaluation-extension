@@ -13,14 +13,16 @@ builddepends=('nodejs'
 	      'git'
 	      'mosquitto-ropieee')
 options=('!strip')
-#source=('remote::git://github.com/RoPieee/ropieee-remote.git#branch=master')
-#source=('ropieee-remote_checkout::git+ssh://git@bitbucket.org/spockfish/ropieee-extension-new.git#branch=master')
 source=('app.js'
-        'logger.js'
+        'log.js'
 	'ropieee-evaluate.install'
 	'ropieee-evaluate.service'
         'package.json')	
-md5sums=()
+md5sums=('1c2380c741b89cea441f9f7fcbed3644'
+         'f5ac04f7b0758af92e5b3e2a34034840'
+         'a25226c8e69f1fb3d5ff8bb68ebfc9f4'
+         '36d051a2a5343a503e0ef7106a5131f3'
+         '97f55b715368bd1bfa8f99cdcdc7c3c0')
 install=${pkgname}.install
 
 
@@ -29,7 +31,8 @@ install=${pkgname}.install
 
 build() {
 echo "build"
-   cd ${srcdir}/ropieee-remote_checkout
+
+   cd ${srcdir}
    rm -rf node_modules
    npm --verbose --production install
 }
@@ -40,9 +43,9 @@ echo "package"
    install -d "${pkgdir}/opt/RoPieee/evaluate"
    install -d "${pkgdir}/etc/systemd/system"
 pwd
-   cp -R "${srcdir}/ropieee-remote_checkout/node_modules"                    "${pkgdir}/opt/RoPieee/evaluate"
-   install -m0644 "ropieee-remote_checkout/packaging/ropieee-remote.service" "${pkgdir}/etc/systemd/system"
-   install -m0644 "ropieee-remote_checkout/app.js"                           "${pkgdir}/opt/RoPieee/evaluate/app.js"
-   install -m0644 "ropieee-remote_checkout/log.js"                           "${pkgdir}/opt/RoPieee/evaluate/log.js"
-   install -m0644 "ropieee-remote_checkout/package.json"                     "${pkgdir}/opt/RoPieee/evaluate/package.json"
+   cp -R "${srcdir}/node_modules"            "${pkgdir}/opt/RoPieee/evaluate"
+   install -m0644 "ropieee-evaluate.service" "${pkgdir}/etc/systemd/system"
+   install -m0644 "app.js"                   "${pkgdir}/opt/RoPieee/evaluate/app.js"
+   install -m0644 "log.js"                   "${pkgdir}/opt/RoPieee/evaluate/log.js"
+   install -m0644 "package.json"             "${pkgdir}/opt/RoPieee/evaluate/package.json"
 }
